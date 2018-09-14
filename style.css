@@ -1,0 +1,32 @@
+body{
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 40px;
+    text-align: center;
+}
+
+#box-container{
+    width: 408px;
+    height: 408px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+    border: #fff 2px dashed;
+}
+#box1{
+    background-color: indianred;
+}
+#box2{
+    background-color: aqua;
+}
+#box3{
+    background-color: darkorange;
+}
+#box4{
+    background-color: slateblue;
+}
