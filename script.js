@@ -1,9 +1,9 @@
 var randomBox;
 var toplamPuan=0;
 function start(){
-   while(randomColor1==randomColor2) {
-       var randomColor1 = randomInt(1, 4);
-       var randomColor2 = randomInt(1, 4);
+   while(randomColor1===randomColor2) {
+       var randomColor1 = getRandomColor();
+       var randomColor2 = getRandomColor();
    }
 
     var i=1;
@@ -13,44 +13,75 @@ function start(){
     }
     window.randomBox = randomInt(1,4);
     boxColor(randomBox,randomColor2);
+    textColor(randomColor2);
 }
 
 function boxColor(boxID,colorId){
-    document.getElementById("box"+boxID).style.background=colors(colorId);
+    document.getElementById("box"+boxID).style.background=colorId;
 }
-function colors(colorId){
-    if (colorId==1)
-        return "rgb(247, 61, 89)";
-    else if(colorId==2)
-        return "rgb(88, 67, 242)";
-    else if(colorId==3)
-        return "rgb(74, 234, 239)";
-    else if(colorId==4)
-        return "rgb(74, 239, 137)";
-    else if(colorId==5)
-        return "rgb(214, 239, 74)";
+
+function getRandomColor() {
+    var hex = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
+
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-
 function boxClick(boxId) {
-
-    if(boxId==window.randomBox) {
-        alert("Dogru kutu  +20 puan")
-        puanHesaplama(+20)
+    if(boxId===window.randomBox) {
+        $.notify("Dogru! +20 Puan",
+            {
+              className: "success",
+              autoHideDelay:1000
+            });
+        puanHesaplama(+20);
         start();
     }
     else{
-        alert("Yanlis kutuya tikladiniz -20 puan")
-        puanHesaplama(-20);
+        $.notify("Yanlis!! -30 Puan",
+            {
+                className: "error",
+                autoHideDelay:1000
+            });
+        puanHesaplama(-30);
         start();
     }
 }
+
 function puanHesaplama(puan){
-
-    window.toplamPuan+=puan;
-    document.getElementById("puan").innerHTML="Toplam Puaniniz = "+window.toplamPuan;
-
+   if(window.toplamPuan+puan<0) {
+       window.toplamPuan =0;
+       document.getElementById("puan").innerHTML = "Toplam Puaniniz = " + window.toplamPuan;
+   }
+   else
+   {
+       window.toplamPuan += puan;
+       document.getElementById("puan").innerHTML = "Toplam Puaniniz = " + window.toplamPuan;
+   }
 }
+
+function textColor(colorId){
+      var x= document.getElementsByClassName("score");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.color =colorId;
+    }
+}
+
+//timer very soon
+$(document).ready(function(){
+    $("#timer").mouseenter(function(){
+        $("#timer").notify(
+            "Very Soon !",
+            { position:"left",
+              className:"info",
+                autoHideDelay:1000
+            }
+        )});
+});
