@@ -1,19 +1,36 @@
 var randomBox;
 var toplamPuan=0;
+var boxCount=12;
 function start(){
-   while(randomColor1===randomColor2) {
-       var randomColor1 = getRandomColor();
-       var randomColor2 = getRandomColor();
-   }
 
-    var i=1;
-    while(i<=4){
+    for(let i=1;i<=boxCount;i++){
+        var div=document.createElement("div");
+        div.setAttribute("class","box");
+        div.setAttribute("id","box"+i);
+        div.boxNumber=i;
+        div.onclick=function () {
+            boxClick(this.boxNumber);
+        };
+      document.getElementById("box-container").appendChild(div);
+    }
+  setNewColor();
+}
+function setNewColor() {
+
+    while(randomColor1===randomColor2) {
+        var randomColor1 = getRandomColor();
+        var randomColor2 = getRandomColor();
+    }
+
+    let i=1;
+    while(i<=12){
         boxColor(i,randomColor1);
         i++;
     }
-    window.randomBox = randomInt(1,4);
+    window.randomBox = randomInt(1,12);
     boxColor(randomBox,randomColor2);
     textColor(randomColor2);
+
 }
 
 function boxColor(boxID,colorId){
@@ -23,7 +40,7 @@ function boxColor(boxID,colorId){
 function getRandomColor() {
     var hex = '0123456789ABCDEF';
     var color = '#';
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
         color += hex[Math.floor(Math.random() * 16)];
     }
     return color;
@@ -41,7 +58,7 @@ function boxClick(boxId) {
               autoHideDelay:1000
             });
         puanHesaplama(+20);
-        start();
+        setNewColor();
     }
     else{
         $.notify("Yanlis!! -30 Puan",
@@ -50,7 +67,7 @@ function boxClick(boxId) {
                 autoHideDelay:1000
             });
         puanHesaplama(-30);
-        start();
+        setNewColor();
     }
 }
 
@@ -68,8 +85,7 @@ function puanHesaplama(puan){
 
 function textColor(colorId){
       var x= document.getElementsByClassName("score");
-    var i;
-    for (i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         x[i].style.color =colorId;
     }
 }

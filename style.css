@@ -1,12 +1,12 @@
 body{
     font-family: 'Gloria Hallelujah', cursive;
-    font-size: 40px;
+    font-size: 25px;
     text-align: center;
 }
 
 #box-container{
-    width: 408px;
-    height: 408px;
+    width: 536px;
+    height: 402px;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -18,11 +18,11 @@ body{
     text-decoration: line-through;
 }
  .score{
-     font-size: 30px;
+     font-size: 20px;
  }
 
 .box{
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     border: #fff 2px dashed;
 }
