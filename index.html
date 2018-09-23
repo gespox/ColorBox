@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
-    <script type="text/javascript" src="script.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Box box</title>
@@ -12,8 +11,9 @@
 <body onload="start()">
 <span class="title">Farkli Kutuyu Tikla</span>
 <div class="score">
-<span id="timer">Timer</span> <span id="puan">Toplam Puaniniz = 0</span>
+<span id="timer" onload="timeIt()">Timer</span> <span id="puan">Toplam Puaniniz = 0</span>
 </div>
 <div id="box-container"></div>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

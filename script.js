@@ -57,6 +57,14 @@ function boxClick(boxId) {
               className: "success",
               autoHideDelay:1000
             });
+        $("#timer").notify(
+                "+1",
+                { position:"left",
+                    className:"success",
+                    autoHideDelay:1000
+                }
+            );
+        counter+=0.5;
         puanHesaplama(+20);
         setNewColor();
     }
@@ -66,6 +74,14 @@ function boxClick(boxId) {
                 className: "error",
                 autoHideDelay:1000
             });
+        $("#timer").notify(
+            "-5",
+            { position:"left",
+                className:"error",
+                autoHideDelay:1000,
+            }
+        );
+        counter-=5;
         puanHesaplama(-30);
         setNewColor();
     }
@@ -84,20 +100,20 @@ function puanHesaplama(puan){
 }
 
 function textColor(colorId){
-      var x= document.getElementsByClassName("score");
-    for (let i = 0; i < x.length; i++) {
-        x[i].style.color =colorId;
-    }
+    document.getElementById("puan").style.color=colorId;
 }
 
-//timer very soon
-$(document).ready(function(){
-    $("#timer").mouseenter(function(){
-        $("#timer").notify(
-            "Very Soon !",
-            { position:"left",
-              className:"info",
-                autoHideDelay:1000
-            }
-        )});
-});
+//timer
+var counter =30;
+document.getElementById("timer").innerHTML=counter;
+setInterval(timeIt,500);
+function timeIt() {
+    counter--;
+    if (counter<=0){
+        alert("Game Over "+ (" Toplam Puaniniz= "+ window.toplamPuan));
+        location.reload();
+    }
+    else {
+        document.getElementById("timer").innerHTML = counter;
+    }
+}

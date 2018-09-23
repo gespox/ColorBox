@@ -14,11 +14,12 @@ body{
 }
  #timer{
     margin: 0;
-    padding: 0;
-    text-decoration: line-through;
+    padding: 0 15px;
+    border: black 1px solid;
 }
  .score{
      font-size: 20px;
+     padding-bottom: 8px;
  }
 
 .box{
