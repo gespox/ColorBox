@@ -1,29 +1,48 @@
 body{
     font-family: 'Gloria Hallelujah', cursive;
-    font-size: 25px;
     text-align: center;
+    font-size: 2vw;
 }
-
-#box-container{
-    width: 536px;
-    height: 402px;
+#big-div{
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
+}
+
+#left-div{
+    width:20%;
+    ;
+}
+#center-div{
+    width: 60%;
+    ;
+}
+#right-div{
+    width:20%;
 
 }
- #timer{
+#box-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.title{
+    font-size: 3vw;
+}
+#timer{
     margin: 0;
-    padding: 0 15px;
-    border: black 1px solid;
+    padding: 0 2vw;
+    border: black 0.1vw solid;
 }
  .score{
-     font-size: 20px;
-     padding-bottom: 8px;
+     font-size: 2vw;
+     padding-bottom: 0.3vw;
  }
 
 .box{
-    width: 130px;
-    height: 130px;
-    border: #fff 2px dashed;
+    width: 25%;
+    height: 11vw;
+    border: #fff 0.15vw dashed;
+    box-sizing: border-box;
+}
+footer{
+font-size: 1vw;
 }

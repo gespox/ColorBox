@@ -4,16 +4,26 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Box box</title>
 </head>
 <body onload="start()">
-<span class="title">Farkli Kutuyu Tikla</span>
-<div class="score">
-<span id="timer" onload="timeIt()">Timer</span> <span id="puan">Toplam Puaniniz = 0</span>
+<div id="big-div">
+    <div id="left-div"></div>
+    <div id="center-div">
+        <span class="title">Farkli Kutuyu Tikla</span>
+        <div class="score">
+            <span id="timer"></span> <span id="puan">Toplam Puaniniz = 0</span>
+        </div>
+        <!-- box-div !-->
+        <div id="box-container"></div>
+    </div>
+    <div id="right-div"></div>
 </div>
-<div id="box-container"></div>
-<script type="text/javascript" src="script.js"></script>
+<footer class="footer">Gespox, <a href="https://github.com/gespox/ColorBox">GitHub</a></footer>
 </body>
 </html>

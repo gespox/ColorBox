@@ -13,21 +13,23 @@ function start(){
         };
       document.getElementById("box-container").appendChild(div);
     }
-  setNewColor();
+    startTimer();
+    setNewColor();
 }
+
 function setNewColor() {
 
-    while(randomColor1===randomColor2) {
-        var randomColor1 = getRandomColor();
-        var randomColor2 = getRandomColor();
-    }
+    do {
+       var randomColor1 = getRandomColor();
+       var randomColor2 = getRandomColor();
+    }while(randomColor1===randomColor2);
 
     let i=1;
     while(i<=12){
         boxColor(i,randomColor1);
         i++;
     }
-    window.randomBox = randomInt(1,12);
+    randomBox = randomInt(1,12);
     boxColor(randomBox,randomColor2);
     textColor(randomColor2);
 
@@ -51,7 +53,7 @@ function randomInt(min, max) {
 }
 
 function boxClick(boxId) {
-    if(boxId===window.randomBox) {
+    if(boxId===randomBox) {
         $.notify("Dogru! +20 Puan",
             {
               className: "success",
@@ -64,7 +66,7 @@ function boxClick(boxId) {
                     autoHideDelay:1000
                 }
             );
-        counter+=0.5;
+        counter++;
         puanHesaplama(+20);
         setNewColor();
     }
@@ -88,32 +90,44 @@ function boxClick(boxId) {
 }
 
 function puanHesaplama(puan){
-   if(window.toplamPuan+puan<0) {
-       window.toplamPuan =0;
-       document.getElementById("puan").innerHTML = "Toplam Puaniniz = " + window.toplamPuan;
+   if(toplamPuan+puan<0) {
+       toplamPuan =0;
+       document.getElementById("puan").innerHTML = "Toplam Puaniniz = " + toplamPuan;
    }
    else
    {
-       window.toplamPuan += puan;
-       document.getElementById("puan").innerHTML = "Toplam Puaniniz = " + window.toplamPuan;
+       toplamPuan += puan;
+       document.getElementById("puan").innerHTML = "Toplam Puaniniz = " + toplamPuan;
    }
 }
-
+//change score textcolor
 function textColor(colorId){
     document.getElementById("puan").style.color=colorId;
 }
 
-//timer
+//timer function
 var counter =30;
-document.getElementById("timer").innerHTML=counter;
-setInterval(timeIt,500);
-function timeIt() {
-    counter--;
-    if (counter<=0){
-        alert("Game Over "+ (" Toplam Puaniniz= "+ window.toplamPuan));
-        location.reload();
-    }
-    else {
-        document.getElementById("timer").innerHTML = counter;
+function startTimer() {
+    document.getElementById("timer").innerHTML=counter;
+    setInterval(timeIt, 750);
+
+    function timeIt() {
+        counter--;
+        if (counter <= 0) {
+            swal({
+                title: "Oyun Bitti!",
+                text: "Toplam Puan= "+toplamPuan ,
+                icon: "error",
+                button: "Yeni Oyun!",
+                closeOnClickOutside: false,
+            }).then((yeniOyun)=>{
+                    if(yeniOyun){
+                        location.reload();
+                    }
+                });
+        }
+        else {
+            document.getElementById("timer").innerHTML = counter;
+        }
     }
 }
